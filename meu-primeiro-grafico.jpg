@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+  <meta name="msapplication-TileColor" content="#603cba">
+  <meta name="theme-color" content="#ffffff">
+  <title>Open Source Chart Image API | QuickChart</title>
+  
+<!-- Search Engine -->
+<meta name="description" content="Create a chart image with one API call and embed it anywhere. Send charts in email and other platforms. Open source, no watermarks, used by thousands of developers.">
+<meta name="image" content="https://i.imgur.com/ZOoEKpw.png">
+<!-- Schema.org for Google -->
+<meta itemprop="name" content="Chart Images from URL | QuickChart">
+<meta itemprop="description" content="Create a chart image with one URL and embed anywhere. Open source, no watermarks.">
+<meta itemprop="image" content="https://i.imgur.com/ZOoEKpw.png">
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Chart Images from URL | QuickChart">
+<meta name="twitter:description" content="Create a chart image with one URL and embed anywhere. Open source, no watermarks.">
+<meta name="twitter:site" content="@quickchart_io">
+<meta name="twitter:creator" content="@quickchart_io">
+<meta name="twitter:image:src" content="https://i.imgur.com/ZOoEKpw.png">
+<!-- Open Graph general (Facebook, Pinterest & Google+) -->
+<meta name="og:title" content="Chart Images from URL | QuickChart">
+<meta name="og:description" content="Create a chart image with one URL and embed anywhere. Open source, no watermarks.">
+<meta name="og:image" content="https://i.imgur.com/ZOoEKpw.png">
+<meta name="og:url" content="https://quickchart.io/">
+<meta name="og:site_name" content="QuickChart">
+<meta name="og:type" content="website">
+
+
+  <link rel="stylesheet" href="/css/home.css?v=20200601.landing-20200531" />
+  <style>
+  a, a:visited {
+    color: #6e6ebd;
+  }
+
+  a:hover {
+    text-decoration: none;
+  }
+
+  code {
+    overflow-x: scroll;
+    max-width: 100%;
+    word-wrap: break-word;
+  }
+
+  pre {
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+
+    padding: 1em 0 0 1em;
+    background-color: #eee;
+  }
+
+  .container {
+    margin: 0 auto;
+    max-width: 1024px;
+    padding: 0 1em;
+  }
+
+  .centered {
+    text-align: center;
+  }
+
+  .mobile-only {
+    display: none;
+  }
+  .desktop-only {
+    display: block;
+  }
+
+  @media (max-width: 600px) {
+    .container {
+      padding: 0 0.5em;
+    }
+    .mobile-only {
+      display: block;
+    }
+    .desktop-only {
+      display: none;
+    }
+  }
+</style>
+
+  
+<style>
+section {
+  margin-bottom: 4em;
+}
+
+.demo-render {
+  position: relative;
+  background-color: #fff;
+  padding: 1em;
+  border-radius: 3px;
+}
+
+.first-example {
+  width:500px;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.demo-link-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #000000a2;
+  cursor: pointer;
+
+  opacity: 0;
+
+  /* offset padding */
+  margin-left: -1em;
+  margin-top: -1em;
+}
+
+.demo-link-container:hover {
+  opacity: 1;
+  transition: all 0.3s linear;
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+}
+
+.demo-link {
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  top: 45%;
+
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a.demo-link, a.demo-link:visited {
+  color: #fff;
+}
+
+.example-gallery {
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.example-gallery .col {
+  flex-basis: 30%;
+}
+
+.example-gallery img {
+  max-height: 200px;
+}
+
+.example-gallery a:hover img {
+  opacity: 0.8;
+}
+
+@media (max-width: 600px) {
+  section {
+    margin-bottom: 2em;
+  }
+  .first-example {
+    width: 100%;
+  }
+}
+</style>
+
+</head>
+<body>
+  
+    <div class="nav">
+      <div class="nav-inner">
+        <div class="brand"><a href="/"><img src="/images/quickchart_logo.png" alt="QuickChart" /></a></div>
+        <div class="nav-links">
+          <ul>
+            <a href="/"><li>Home</li></a>
+            <a href="/documentation/"><li>Docs</li></a>
+            <a href="/gallery/" class="mobile-hide"><li>Chart Gallery</li></a>
+            <a href="/chart-maker/" class="mobile-hide"><li>Chart Maker</li></a>
+            <a href="/pricing/"><li>Pricing</li></a>
+            <a href="https://github.com/typpo/quickchart"><li>Open Source</li></a>
+            <a href="/cdn-cgi/l/email-protection#493a3c3939263b3d09383c202a222a21283b3d672026" class="mobile-hide"><li>Support</li></a>
+          </ul>
+        </div>
+      </div>
+    </div>
+  
+  
+<div class="header">
+  <div class="page-container">
+    <div class="centered">
+      <h1>Generate chart images with a simple, open API</h1>
+      <p>
+        Static image charts for email, reports, and anywhere else.  Over 1 billion charts rendered for users around the world.
+      </p>
+      <p style="margin:2em 0">
+        <a class="cta js-track-docs" href="/documentation/" style="margin-right:0.7em">Get started</a>
+        <a class="cta secondary" href="/pricing/">View hosted plans</a>
+      </p>
+    </div>
+    <div class="first-example">
+      <p style="font-size:0.8em;margin:0;text-align: center">
+        <code>
+          https://quickchart.io/chart?c=<span class="highlight">{type:'bar',data:{labels:['Q1','Q2','Q3','Q4'], datasets:[{label:'Users',data:[50,60,70,180]},{label:'Revenue',data:[100,200,300,400]}]}}</span>
+        </code>
+      </p>
+      <p class="centered" style="font-size: 2em; color: #bbb;margin:0">
+        ⇣
+      </p>
+      <div class="demo-render pop">
+        <div id="demo-link-container" class="demo-link-container">
+          <a href="#sandbox" class="demo-link">
+            Edit chart
+          </a>
+        </div>
+        <a href="#sandbox"><img class="img-example" src="https://quickchart.io/chart?bkg=white&c={type:'bar',data:{labels:['Q1','Q2','Q3','Q4'], datasets:[{label:'Users',data:[50,60,70,180]},{label:'Revenue',data:[100,200,300,400]}]}}"/></a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="page-container">
+  <div class="summary">
+    <p>
+      QuickChart is an API for generating <a href="/documentation/">chart images</a>, <a href="/documentation/#parameters">PDFs</a>, and <a href="/qr-code-api/">QR codes</a>.
+      We're built on <a href="https://www.chartjs.org/docs/2.9.4/charts/">Chart.js</a>, the most popular open-source charting library.  It's as easy as putting your Chart.js definition in a URL:
+      <code class="highlight" style="font-size:0.8em">https://quickchart.io/chart?c={your chart here}</code>.
+    </p>
+  </div>
+  <div class="hero">
+  <div class="col">
+    <h2 id="sandbox" class="try-it-header">Live chart editor</h2>
+    <div class="try-it-container">
+<!--
+      <div id="sandbox-input-edit" class="cta-edit-container">
+        <button class="cta secondary">Click to edit live</button>
+      </div>
+-->
+      <textarea id="sandbox-input" class="sandbox-input" data-image-id="sandbox-img" data-tag-id="sandbox-tag">{
+  type: 'bar',
+  data: {
+    labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+    datasets: [{
+      label: 'Users',
+      data: [50, 60, 70, 180]
+    }, {
+      label: 'Revenue',
+      data: [100, 200, 300, 400]
+    }]
+  }
+}</textarea>
+    </div>
+  </div>
+  <div class="arrowcol"></div>
+  <div class="col">
+    <div id="sandbox-tag" class="sandbox-tag"></div>
+    <img class="img-example" id="sandbox-img" src="/chart?bkg=white&c={
+  type: 'bar',
+  data: {
+    labels: ['Q1', 'Q2', 'Q3', 'Q4'],
+    datasets: [{
+      label: 'Users',
+      data: [50, 60, 70, 180]
+    }, {
+      label: 'Revenue',
+      data: [100, 200, 300, 400]
+    }]
+  }
+}"/>
+    <div class="code-example-container" style="display:none">
+      View code:
+      <ul class="tabs">
+        <li class="item" data-tab="js">Javascript</li>
+        <li class="item" data-tab="python">Python</li>
+        <li class="item" data-tab="ruby">Ruby</li>
+        <li class="item" data-tab="php">PHP</li>
+        <li class="item" data-tab="csharp">C#</li>
+        <li class="item" data-tab="java">Java</li>
+      </ul>
+      <div class="code-example tab-content" data-tab="js">
+Using <a href="https://github.com/typpo/quickchart-js">quickchart-js</a>:
+<pre class="language-js"><code class="language-js"><span class="token keyword">const</span> QuickChart <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'quickchart-js'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br><span class="token keyword">const</span> chart <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QuickChart</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>chart<span class="token punctuation">.</span><span class="token function">setConfig</span><span class="token punctuation">(</span><span class="token punctuation">{</span><br>  <span class="token comment">// Chart config here</span><br><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br><span class="token comment">// Print the chart URL</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>chart<span class="token punctuation">.</span><span class="token function">getUrl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br><span class="token comment">// Get the image...</span><br><span class="token keyword">const</span> image <span class="token operator">=</span> <span class="token keyword">await</span> chart<span class="token punctuation">.</span><span class="token function">toBinary</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br><span class="token comment">// Or write it to a file</span><br>chart<span class="token punctuation">.</span><span class="token function">toFile</span><span class="token punctuation">(</span><span class="token string">'chart.png'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br><span class="token comment">// Print the chart URL</span><br>console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>myChart<span class="token punctuation">.</span><span class="token function">getUrl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
+      </div>
+      <div class="code-example tab-content" data-tab="python">
+Using <a href="https://github.com/typpo/quickchart-python">quickchart-python</a>:
+<pre class="language-python"><code class="language-python"><span class="token keyword">from</span> quickchart <span class="token keyword">import</span> QuickChart<br><br>qc <span class="token operator">=</span> QuickChart<span class="token punctuation">(</span><span class="token punctuation">)</span><br>qc<span class="token punctuation">.</span>width <span class="token operator">=</span> <span class="token number">500</span><br>qc<span class="token punctuation">.</span>height <span class="token operator">=</span> <span class="token number">300</span><br><br><span class="token comment"># Config can be set as a string or as a nested dict</span><br>qc<span class="token punctuation">.</span>config <span class="token operator">=</span> <span class="token string">'&lt;chart config>'</span><br><br><span class="token comment"># You can get the chart URL...</span><br><span class="token keyword">print</span><span class="token punctuation">(</span>qc<span class="token punctuation">.</span>get_url<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><br><br><span class="token comment"># Get the image as a variable...</span><br>image <span class="token operator">=</span> qc<span class="token punctuation">.</span>get_image<span class="token punctuation">(</span><span class="token punctuation">)</span><br><br><span class="token comment"># Or write the chart to a file</span><br>qc<span class="token punctuation">.</span>to_file<span class="token punctuation">(</span><span class="token string">'mychart.png'</span><span class="token punctuation">)</span></code></pre>
+      </div>
+      <div class="code-example tab-content" data-tab="ruby">
+Using <a href="https://github.com/typpo/quickchart-ruby">quickchart-ruby</a>:
+<pre class="language-ruby"><code class="language-ruby"><span class="token keyword">require</span> <span class="token string">'quickchart'</span><br><br><span class="token comment"># Chart config can be set as a string or as a nested hash</span><br>qc <span class="token operator">=</span> <span class="token constant">QuickChart</span><span class="token punctuation">.</span><span class="token keyword">new</span><span class="token punctuation">(</span><br>  <span class="token string">'&lt;chart config>'</span><br><span class="token punctuation">)</span><br><br><span class="token comment"># Print the chart URL</span><br>puts qc<span class="token punctuation">.</span>get_url<br><br><span class="token comment"># Get the image</span><br>image <span class="token operator">=</span> qc<span class="token punctuation">.</span>to_blob<br><br><span class="token comment"># Or write it to a file</span><br>qc<span class="token punctuation">.</span>to_file<span class="token punctuation">(</span><span class="token string">"chart.png"</span><span class="token punctuation">)</span></code></pre>
+      </div>
+      <div class="code-example tab-content" data-tab="php">
+Using <a href="https://github.com/typpo/quickchart-php">quickchart-php</a>:
+<pre class="language-php"><code class="language-php"><span class="token keyword">require</span> <span class="token single-quoted-string string">'quickchart'</span><br><br><span class="token variable">$qc</span> <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QuickChart</span><span class="token punctuation">(</span><span class="token keyword">array</span><span class="token punctuation">(</span><br>  <span class="token single-quoted-string string">'width'</span><span class="token punctuation">:</span> <span class="token number">500</span><span class="token punctuation">,</span><br>  <span class="token single-quoted-string string">'height'</span><span class="token punctuation">:</span> <span class="token number">300</span><span class="token punctuation">,</span><br><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br><span class="token comment">// Chart config can be set as a string or as a nested array</span><br><span class="token variable">$qc</span><span class="token punctuation">.</span><span class="token function">setConfig</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'&lt;chart config>'</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br><span class="token comment">// Print the chart URL</span><br><span class="token keyword">echo</span> <span class="token variable">$qc</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">getUrl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br><span class="token comment">// Get the image</span><br><span class="token variable">$image</span> <span class="token operator">=</span> <span class="token variable">$qc</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">toBinary</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br><span class="token comment">// Or write it to a file</span><br><span class="token variable">$qc</span><span class="token operator">-</span><span class="token operator">></span><span class="token function">toFile</span><span class="token punctuation">(</span><span class="token single-quoted-string string">'chart.png'</span><span class="token punctuation">)</span></code></pre>
+      </div>
+      <div class="code-example tab-content" data-tab="csharp">
+Using <a href="https://github.com/typpo/quickchart-csharp">quickchart-csharp</a>:
+<pre class="language-csharp"><code class="language-csharp"><span class="token keyword">namespace</span> QuickChartExample<br><span class="token punctuation">{</span><br>    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SimpleExample</span><br>    <span class="token punctuation">{</span><br>        <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">Main</span><span class="token punctuation">(</span><span class="token keyword">string</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>            <span class="token class-name">Chart</span> qc <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Chart</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>            qc<span class="token punctuation">.</span>Width <span class="token operator">=</span> <span class="token number">500</span><span class="token punctuation">;</span><br>            qc<span class="token punctuation">.</span>Height <span class="token operator">=</span> <span class="token number">300</span><span class="token punctuation">;</span><br>            qc<span class="token punctuation">.</span>Config <span class="token operator">=</span> <span class="token string">@"&lt;chart config>"</span><span class="token punctuation">;</span><br><br>            <span class="token comment">// Get the URL</span><br>            Console<span class="token punctuation">.</span><span class="token function">WriteLine</span><span class="token punctuation">(</span>qc<span class="token punctuation">.</span><span class="token function">GetUrl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>            <span class="token comment">// Or get the image</span><br>            <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> imageBytes <span class="token operator">=</span> qc<span class="token punctuation">.</span><span class="token function">ToByteArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>            <span class="token comment">// Or write it to a file</span><br>            qc<span class="token punctuation">.</span><span class="token function">ToFile</span><span class="token punctuation">(</span><span class="token string">"chart.png"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>        <span class="token punctuation">}</span><br>    <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+      </div>
+      <div class="code-example tab-content" data-tab="java">
+Using <a href="https://github.com/typpo/quickchart-java">quickchart-java</a>:
+<pre class="language-java"><code class="language-java"><span class="token keyword">import</span> <span class="token namespace">io<span class="token punctuation">.</span>quickchart</span><span class="token punctuation">.</span><span class="token class-name">QuickChart</span><span class="token punctuation">;</span><br><br><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">PrintUrlExample</span> <span class="token punctuation">{</span><br><br>  <span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span> <span class="token punctuation">{</span><br>    <span class="token class-name">QuickChart</span> chart <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">QuickChart</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    chart<span class="token punctuation">.</span><span class="token function">setWidth</span><span class="token punctuation">(</span><span class="token number">500</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    chart<span class="token punctuation">.</span><span class="token function">setHeight</span><span class="token punctuation">(</span><span class="token number">300</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>    chart<span class="token punctuation">.</span><span class="token function">setConfig</span><span class="token punctuation">(</span><span class="token string">"&lt;chart config>"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>    <span class="token comment">// Print the chart image URL</span><br>    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>chart<span class="token punctuation">.</span><span class="token function">getUrl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>    <span class="token comment">// Or get the image</span><br>    <span class="token keyword">byte</span><span class="token punctuation">[</span><span class="token punctuation">]</span> imageBytes <span class="token operator">=</span> chart<span class="token punctuation">.</span><span class="token function">toByteArray</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br><br>    <span class="token comment">// Or write it to disk</span><br>    chart<span class="token punctuation">.</span><span class="token function">toFile</span><span class="token punctuation">(</span><span class="token string">"chart.png"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><br>  <span class="token punctuation">}</span><br><span class="token punctuation">}</span></code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <h2 id="customize">Build any chart</h2>
+  <p>
+    Let's get creative!
+    You can use all static customization options available in Chart.js.
+    Visit our <a href="/gallery/">chart gallery</a> to see different chart types and plugins: bar charts, line graphs, pie charts, and much more.
+  </p>
+  <section>
+    <div class="hero example-gallery">
+      <div class="col">
+        <a href="/sandbox/#%7B%0A%20%20%22type%22%3A%20%22bar%22%2C%0A%20%20%22data%22%3A%20%7B%0A%20%20%20%20%22labels%22%3A%20%5B%0A%20%20%20%20%20%20%22January%22%2C%0A%20%20%20%20%20%20%22February%22%2C%0A%20%20%20%20%20%20%22March%22%2C%0A%20%20%20%20%20%20%22April%22%2C%0A%20%20%20%20%20%20%22May%22%2C%0A%20%20%20%20%20%20%22June%22%2C%0A%20%20%20%20%20%20%22July%22%0A%20%20%20%20%5D%2C%0A%20%20%20%20%22datasets%22%3A%20%5B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22type%22%3A%20%22line%22%2C%0A%20%20%20%20%20%20%20%20%22label%22%3A%20%22Dataset%201%22%2C%0A%20%20%20%20%20%20%20%20%22borderColor%22%3A%20%22rgb(54%2C%20162%2C%20235)%22%2C%0A%20%20%20%20%20%20%20%20%22borderWidth%22%3A%202%2C%0A%20%20%20%20%20%20%20%20%22fill%22%3A%20false%2C%0A%20%20%20%20%20%20%20%20%22data%22%3A%20%5B%0A%20%20%20%20%20%20%20%20%20%20-33%2C%0A%20%20%20%20%20%20%20%20%20%2026%2C%0A%20%20%20%20%20%20%20%20%20%2029%2C%0A%20%20%20%20%20%20%20%20%20%2089%2C%0A%20%20%20%20%20%20%20%20%20%20-41%2C%0A%20%20%20%20%20%20%20%20%20%2070%2C%0A%20%20%20%20%20%20%20%20%20%20-84%0A%20%20%20%20%20%20%20%20%5D%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22type%22%3A%20%22bar%22%2C%0A%20%20%20%20%20%20%20%20%22label%22%3A%20%22Dataset%202%22%2C%0A%20%20%20%20%20%20%20%20%22backgroundColor%22%3A%20%22rgb(255%2C%2099%2C%20132)%22%2C%0A%20%20%20%20%20%20%20%20%22data%22%3A%20%5B%0A%20%20%20%20%20%20%20%20%20%20-42%2C%0A%20%20%20%20%20%20%20%20%20%2073%2C%0A%20%20%20%20%20%20%20%20%20%20-69%2C%0A%20%20%20%20%20%20%20%20%20%20-94%2C%0A%20%20%20%20%20%20%20%20%20%20-81%2C%0A%20%20%20%20%20%20%20%20%20%2018%2C%0A%20%20%20%20%20%20%20%20%20%2087%0A%20%20%20%20%20%20%20%20%5D%2C%0A%20%20%20%20%20%20%20%20%22borderColor%22%3A%20%22white%22%2C%0A%20%20%20%20%20%20%20%20%22borderWidth%22%3A%202%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22type%22%3A%20%22bar%22%2C%0A%20%20%20%20%20%20%20%20%22label%22%3A%20%22Dataset%203%22%2C%0A%20%20%20%20%20%20%20%20%22backgroundColor%22%3A%20%22rgb(75%2C%20192%2C%20192)%22%2C%0A%20%20%20%20%20%20%20%20%22data%22%3A%20%5B%0A%20%20%20%20%20%20%20%20%20%2093%2C%0A%20%20%20%20%20%20%20%20%20%2060%2C%0A%20%20%20%20%20%20%20%20%20%20-15%2C%0A%20%20%20%20%20%20%20%20%20%2077%2C%0A%20%20%20%20%20%20%20%20%20%20-59%2C%0A%20%20%20%20%20%20%20%20%20%2082%2C%0A%20%20%20%20%20%20%20%20%20%20-44%0A%20%20%20%20%20%20%20%20%5D%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%5D%0A%20%20%7D%2C%0A%20%20%22options%22%3A%20%7B%0A%20%20%20%20%22responsive%22%3A%20true%2C%0A%20%20%20%20%22title%22%3A%20%7B%0A%20%20%20%20%20%20%22display%22%3A%20true%2C%0A%20%20%20%20%20%20%22text%22%3A%20%22Chart.js%20Combo%20Bar%20Line%20Chart%22%0A%20%20%20%20%7D%2C%0A%20%20%20%20%22tooltips%22%3A%20%7B%0A%20%20%20%20%20%20%22mode%22%3A%20%22index%22%2C%0A%20%20%20%20%20%20%22intersect%22%3A%20true%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D"><img loading="lazy" src="/images/homepage/example-7.png" srcset="/images/homepage/example-7@2x.png 2x" /></a>
+      </div>
+  <!--
+      <div class="col">
+        <a href="/gallery/"><img loading="lazy" src="/images/homepage/example-1.png" srcset="/images/homepage/example-1@2x.png 2x" /></a>
+      </div>
+  -->
+      <div class="col">
+        <a href="/sandbox/#%7B%0A%20%20type%3A%20%27bar%27%2C%0A%20%20data%3A%20%7B%0A%20%20%20%20labels%3A%20%5B2012%2C%202013%2C%202014%2C%202015%2C%202016%5D%2C%0A%20%20%20%20datasets%3A%20%5B%7B%0A%20%20%20%20%20%20label%3A%20%27Gradient%20example%27%2C%0A%20%20%20%20%20%20data%3A%20%5B12%2C%206%2C%205%2C%2018%2C%2012%5D%2C%0A%20%20%20%20%20%20backgroundColor%3A%20getGradientFillHelper(%27vertical%27%2C%20%5B%22%2336a2eb%22%2C%20%22%23a336eb%22%2C%20%22%23eb3639%22%5D)%2C%0A%20%20%20%20%7D%5D%0A%20%20%7D%0A%7D"><img loading="lazy" src="/images/homepage/example-2.png" srcset="/images/homepage/example-2@2x.png 2x" /></a>
+      </div>
+      <div class="col">
+        <a href="/documentation/#annotations-and-labels"><img loading="lazy" src="/images/homepage/example-3.png" srcset="/images/homepage/example-3@2x.png 2x" /></a>
+      </div>
+      <div class="col">
+        <a href="/documentation/#annotations-and-labels"><img loading="lazy" src="/images/homepage/example-4.png" srcset="/images/homepage/example-4@2x.png 2x" /></a>
+      </div>
+      <div class="col">
+        <a href="/sandbox/#%7B%0A%20%20type%3A%20%27line%27%2C%0A%20%20data%3A%20%7B%0A%20%20%20%20labels%3A%20%5B%27January%27%2C%20%27February%27%2C%20%27March%27%2C%20%27April%27%2C%20%27May%27%2C%20%27June%27%2C%20%27July%27%5D%2C%0A%20%20%20%20datasets%3A%20%5B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20label%3A%20%27dataset%20-%20big%20points%27%2C%0A%20%20%20%20%20%20%20%20data%3A%20%5B-15%2C%20-80%2C%2079%2C%20-11%2C%20-5%2C%2033%2C%20-57%5D%2C%0A%20%20%20%20%20%20%20%20backgroundColor%3A%20%27rgb(255%2C%2099%2C%20132)%27%2C%0A%20%20%20%20%20%20%20%20borderColor%3A%20%27rgb(255%2C%2099%2C%20132)%27%2C%0A%20%20%20%20%20%20%20%20fill%3A%20false%2C%0A%20%20%20%20%20%20%20%20borderDash%3A%20%5B5%2C%205%5D%2C%0A%20%20%20%20%20%20%20%20pointRadius%3A%2015%2C%0A%20%20%20%20%20%20%20%20pointHoverRadius%3A%2010%2C%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20label%3A%20%27dataset%20-%20individual%20point%20sizes%27%2C%0A%20%20%20%20%20%20%20%20data%3A%20%5B-86%2C%2059%2C%20-70%2C%20-40%2C%2040%2C%2033%2C%2016%5D%2C%0A%20%20%20%20%20%20%20%20backgroundColor%3A%20%27rgb(54%2C%20162%2C%20235)%27%2C%0A%20%20%20%20%20%20%20%20borderColor%3A%20%27rgb(54%2C%20162%2C%20235)%27%2C%0A%20%20%20%20%20%20%20%20fill%3A%20false%2C%0A%20%20%20%20%20%20%20%20borderDash%3A%20%5B5%2C%205%5D%2C%0A%20%20%20%20%20%20%20%20pointRadius%3A%20%5B2%2C%204%2C%206%2C%2018%2C%200%2C%2012%2C%2020%5D%2C%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20label%3A%20%27dataset%20-%20large%20pointHoverRadius%27%2C%0A%20%20%20%20%20%20%20%20data%3A%20%5B59%2C%20-65%2C%20-33%2C%200%2C%20-79%2C%2095%2C%20-53%5D%2C%0A%20%20%20%20%20%20%20%20backgroundColor%3A%20%27rgb(75%2C%20192%2C%20192)%27%2C%0A%20%20%20%20%20%20%20%20borderColor%3A%20%27rgb(75%2C%20192%2C%20192)%27%2C%0A%20%20%20%20%20%20%20%20fill%3A%20false%2C%0A%20%20%20%20%20%20%20%20pointHoverRadius%3A%2030%2C%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20label%3A%20%27dataset%20-%20large%20pointHitRadius%27%2C%0A%20%20%20%20%20%20%20%20data%3A%20%5B73%2C%2083%2C%20-19%2C%2074%2C%2016%2C%20-12%2C%208%5D%2C%0A%20%20%20%20%20%20%20%20backgroundColor%3A%20%27rgb(255%2C%20205%2C%2086)%27%2C%0A%20%20%20%20%20%20%20%20borderColor%3A%20%27rgb(255%2C%20205%2C%2086)%27%2C%0A%20%20%20%20%20%20%20%20fill%3A%20false%2C%0A%20%20%20%20%20%20%20%20pointHitRadius%3A%2020%2C%0A%20%20%20%20%20%20%7D%2C%0A%20%20%20%20%5D%2C%0A%20%20%7D%2C%0A%20%20options%3A%20%7B%0A%20%20%20%20legend%3A%20%7B%0A%20%20%20%20%20%20position%3A%20%27bottom%27%2C%0A%20%20%20%20%7D%2C%0A%20%20%20%20title%3A%20%7B%0A%20%20%20%20%20%20display%3A%20true%2C%0A%20%20%20%20%20%20text%3A%20%27Chart.js%20Line%20Chart%20-%20Different%20point%20sizes%27%2C%0A%20%20%20%20%7D%2C%0A%20%20%7D%2C%0A%7D%0A"><img loading="lazy" src="/images/homepage/example-5.png" srcset="/images/homepage/example-5@2x.png 2x" /></a>
+      </div>
+      <div class="col">
+        <a href="https://quickchart.io/sandbox/#%7B%0A%20%20%22type%22%3A%20%22line%22%2C%0A%20%20%22data%22%3A%20%7B%0A%20%20%20%20%22labels%22%3A%20%5B%0A%20%20%20%20%20%20%22January%22%2C%0A%20%20%20%20%20%20%22February%22%2C%0A%20%20%20%20%20%20%22March%22%2C%0A%20%20%20%20%20%20%22April%22%2C%0A%20%20%20%20%20%20%22May%22%2C%0A%20%20%20%20%20%20%22June%22%2C%0A%20%20%20%20%20%20%22July%22%0A%20%20%20%20%5D%2C%0A%20%20%20%20%22datasets%22%3A%20%5B%0A%20%20%20%20%20%20%7B%0A%20%20%20%20%20%20%20%20%22label%22%3A%20%22My%20First%20dataset%22%2C%0A%20%20%20%20%20%20%20%20%22backgroundColor%22%3A%20%22rgb(255%2C%2099%2C%20132)%22%2C%0A%20%20%20%20%20%20%20%20%22borderColor%22%3A%20%22rgb(255%2C%2099%2C%20132)%22%2C%0A%20%20%20%20%20%20%20%20%22data%22%3A%20%5B%0A%20%20%20%20%20%20%20%20%20%2010%2C%0A%20%20%20%20%20%20%20%20%20%2023%2C%0A%20%20%20%20%20%20%20%20%20%205%2C%0A%20%20%20%20%20%20%20%20%20%2099%2C%0A%20%20%20%20%20%20%20%20%20%2067%2C%0A%20%20%20%20%20%20%20%20%20%2043%2C%0A%20%20%20%20%20%20%20%20%20%200%0A%20%20%20%20%20%20%20%20%5D%2C%0A%20%20%20%20%20%20%20%20%22fill%22%3A%20false%2C%0A%20%20%20%20%20%20%20%20%22pointRadius%22%3A%2010%2C%0A%20%20%20%20%20%20%20%20%22pointHoverRadius%22%3A%2015%2C%0A%20%20%20%20%20%20%20%20%22showLine%22%3A%20false%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%5D%0A%20%20%7D%2C%0A%20%20%22options%22%3A%20%7B%0A%20%20%20%20%22responsive%22%3A%20true%2C%0A%20%20%20%20%22title%22%3A%20%7B%0A%20%20%20%20%20%20%22display%22%3A%20true%2C%0A%20%20%20%20%20%20%22text%22%3A%20%22Point%20Style%3A%20star%22%0A%20%20%20%20%7D%2C%0A%20%20%20%20%22legend%22%3A%20%7B%0A%20%20%20%20%20%20%22display%22%3A%20false%0A%20%20%20%20%7D%2C%0A%20%20%20%20%22elements%22%3A%20%7B%0A%20%20%20%20%20%20%22point%22%3A%20%7B%0A%20%20%20%20%20%20%20%20%22pointStyle%22%3A%20%22star%22%0A%20%20%20%20%20%20%7D%0A%20%20%20%20%7D%0A%20%20%7D%0A%7D"><img loading="lazy" src="/images/homepage/example-8.png" srcset="/images/homepage/example-8@2x.png 2x" /></a>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="cta-container summary">
+      <div class="hero brag-container">
+        <div class="col">
+          <span class="brag">⚡ 1 billion+ charts rendered</span>
+        </div>
+        <div class="col">
+          <span class="brag">📈 All the flexibility of Chart.js</span>
+        </div>
+        <div class="col">
+          <span class="brag">✅ Built on open standards</span>
+        </div>
+      </div>
+      <p class="centered">
+        <a class="cta js-track-docs" href="/documentation/">Get started</a>
+        <a class="cta secondary" href="/pricing/">View hosted plans</a>
+      </p>
+    </div>
+  </section>
+  <section>
+    <div class="hero">
+      <div class="col">
+        <h2>Our hosted solutions</h2>
+        <p>
+          Rendering at scale is difficult and resource intensive.  We've put a lot of working into taking care of the most difficult parts so you can focus on building your application.
+        </p>
+        <p>
+          Purchasing a license also grants permission to modify QuickChart for private and on-prem commercial use.
+        </p>
+        <p>
+          <a href="/pricing/">Learn more about hosting options »</a>
+        </p>
+      </div>
+      <div class="col">
+        <a href="/images/architecture.png"><img loading="lazy" src="/images/architecture.resized.png" srcset="/images/architecture.resized@2x.png 2x" style="width:100%;max-width:700px;"/></a>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="hero">
+      <div class="col">
+        <h2>Charts that can be used anywhere</h2>
+        <p>
+          A chart is simply defined by its URL, so you can use our chart API in any programming language you like.
+          And because our API produces images, you can include these charts nearly anywhere.
+        </p>
+        <p>
+          We support many languages and frameworks, including <a href="/documentation/send-charts-in-email/#email-charts-with-python">Python</a>, <a href="/documentation/send-charts-in-email/#email-charts-with-javascript%2Fnode.js">Javascript/Node</a>, <a href="/documentation/send-charts-in-email/#email-charts-with-java">Java</a>, <a href="/documentation/send-charts-in-email/#email-charts-with-c%23">C#</a>, and <a href="/documentation/send-charts-in-email/#email-charts-with-php">PHP</a>.
+        </p>
+        <p>
+          Need help with development?  <a href="/cdn-cgi/l/email-protection#9ae9efeaeaf5e8eedaebeff3f9f1f9f2fbe8eeb4f3f5">Send us a message</a>.
+        </p>
+      </div>
+      <div class="col">
+        <div style="max-width:375px; padding: 1em; margin: 0 auto" class="pop">
+          <img loading="lazy" src="/images/docs/chart_in_email2.resized.png" srcset="/images/docs/chart_in_email2.resized@2x.png 2x" style="width:100%"/>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="hero">
+      <div class="col">
+        <h2>Open-source</h2>
+        <p>
+          QuickChart is <a href="https://github.com/typpo/quickchart">open source</a>, dual licensed under the GNU GPLv3 and a commercial license.  You may use images produced by our API for any purpose.
+        </p>
+        <p>
+          Don't build your software on top of proprietary chart formats - use open source!
+        </p>
+      </div>
+      <div class="col">
+        <div style="max-width:375px; margin: 0 auto" class="pop">
+          <img loading="lazy" src="/images/docs/github_placeholder.resized.png" srcset="/images/docs/github_placeholder.resized@2x.png 2x" style="width:100%"/>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="cta-container summary">
+      <div class="hero brag-container">
+        <span class="brag">See why hundreds of developers and businesses use QuickChart</span>
+      </div>
+      <p class="centered">
+        <a class="cta js-track-docs" href="/documentation/">Get started</a>
+        <a class="cta secondary" href="/pricing/">View hosted plans</a>
+      </p>
+    </div>
+  </section>
+</div>
+
+  
+  <footer>
+    <div class="page-container footer-content desktop-only">
+      &copy; Alioth LLC
+      &middot;
+      <a href="/privacy/">Privacy &amp; Compliance</a>
+      &middot;
+      <a href="/terms/">Terms of Service</a>
+      <div class="footer-right">
+        <a href="#">Back to top</a>
+      </div>
+    </div>
+    <div class="page-container footer-content mobile-only centered">
+      &copy; Alioth LLC
+      &middot;
+      <a href="/privacy/">Privacy</a>
+      &middot;
+      <a href="/terms/">Terms of Service</a>
+    </div>
+  </footer>
+  
+  
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    document.getElementById('demo-link-container').onclick = function() {
+      window.location.href = '#sandbox';
+    };
+  </script>
+<script src="https://cdn.jsdelivr.net/npm/codemirror@5.48.0/lib/codemirror.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/codemirror@5.48.0/mode/javascript/javascript.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.48.0/lib/codemirror.css">
+<script>
+  var elts = document.getElementsByClassName('sandbox-input')
+  var codemirrors = [];
+  var tracked = false;
+  for (var i=0; i < elts.length; i++) {
+    (function() {
+      var input = elts[i];
+      var img = document.getElementById(input.dataset.imageId);
+      var tag = input.dataset.tagId ? document.getElementById(input.dataset.tagId) : undefined;
+      var updateImage = function(val) {
+        var urlBase = '/';
+        if (window.location.href.indexOf('localhost') > -1) {
+          urlBase = 'http://localhost:3400/';
+        }
+        var url = urlBase + 'chart?bkg=white&c=' + encodeURIComponent(val);
+        img.src = url;
+        var lines = val.split('\n').filter(function(line) {
+          return line.trim().slice(0, 2) !== '//';
+        });
+        if (tag) {
+          let linkText = 'https://quickchart.io/chart?bkg=white&c=' + lines.join('');
+          if (linkText.length > 500) {
+            linkText = linkText.slice(0, 100) + ' ... ' + linkText.slice(linkText.length - 100);
+          }
+          tag.innerHTML = 'Chart URL: <a target="_blank" href="' + url + '">' + linkText + '</a>';
+        }
+        if (!tracked) {
+          if (typeof mixpanel !== 'undefined') {
+            mixpanel.track('Edited sandbox');
+          }
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'Edited sandbox');
+          }
+          tracked = true;
+        }
+      }
+      input.onkeyup = debounce(function() {
+        updateImage(this.value);
+      }, 350);
+/*
+      input.onfocus = function() {
+        document.getElementById('sandbox-input-edit').style.display = 'none';
+      };
+*/
+      var cm = CodeMirror.fromTextArea(input, {
+        lineNumbers: true,
+        lineWrapping: true,
+      });
+      cm.on('change', debounce(function(editor) {
+        updateImage(editor.getValue());
+      }), 350)
+      cm.on('focus', function() {
+        //document.getElementById('sandbox-input-edit').style.display = 'none';
+      });
+      codemirrors.push(cm);
+      updateImage(input.value);
+    })();
+  }
+
+/*
+  document.getElementById('sandbox-input-edit').onclick = function() {
+    document.getElementById('sandbox-input-edit').style.display = 'none';
+    if (codemirrors.length) {
+      codemirrors[0].focus();
+    }
+  };
+*/
+
+function debounce(func, wait, immediate) {
+  var timeout;
+  return function executedFunction() {
+    var context = this;
+    var args = arguments;
+    var later = function() {
+      timeout = null;
+      if (!immediate) func.apply(context, args);
+    };
+    var callNow = immediate && !timeout;
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+    if (callNow) func.apply(context, args);
+  }
+};
+
+function handleTabClick() {
+  var tabName = this.getAttribute('data-tab');
+  document.querySelectorAll('.tab-content').forEach(function(contentElt) {
+    if (contentElt.getAttribute('data-tab') == tabName) {
+      contentElt.style.display = 'block';
+    } else {
+      contentElt.style.display = 'none';
+    }
+  });
+
+  document.querySelectorAll('.tabs li').forEach(function(tabElt) {
+    tabElt.classList.remove('active');
+  });
+  this.classList.add('active');
+
+  if (typeof mixpanel !== 'undefined') {
+    mixpanel.track('Selected code tab', {tabName: tabName});
+  }
+  if (typeof gtag !== 'undefined') {
+    gtag('event', 'Selected code tab', {tabName: tabName});
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.tabs li').forEach(function(tabElt) {
+    tabElt.addEventListener('click', handleTabClick);
+  });
+});
+</script>
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-135627396-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-135627396-1');
+</script>
+<script>(function(c,a){if(!a.__SV){var b=window;try{var d,m,j,k=b.location,f=k.hash;d=function(a,b){return(m=a.match(RegExp(b+"=([^&]*)")))?m[1]:null};f&&d(f,"state")&&(j=JSON.parse(decodeURIComponent(d(f,"state"))),"mpeditor"===j.action&&(b.sessionStorage.setItem("_mpcehash",f),history.replaceState(j.desiredHash||"",c.title,k.pathname+k.search)))}catch(n){}var l,h;window.mixpanel=a;a._i=[];a.init=function(b,d,g){function c(b,i){var a=i.split(".");2==a.length&&(b=b[a[0]],i=a[1]);b[i]=function(){b.push([i].concat(Array.prototype.slice.call(arguments,
+0)))}}var e=a;"undefined"!==typeof g?e=a[g]=[]:g="mixpanel";e.people=e.people||[];e.toString=function(b){var a="mixpanel";"mixpanel"!==g&&(a+="."+g);b||(a+=" (stub)");return a};e.people.toString=function(){return e.toString(1)+".people (stub)"};l="disable time_event track track_pageview track_links track_forms track_with_groups add_group set_group remove_group register register_once alias unregister identify name_tag set_config reset opt_in_tracking opt_out_tracking has_opted_in_tracking has_opted_out_tracking clear_opt_in_out_tracking people.set people.set_once people.unset people.increment people.append people.union people.track_charge people.clear_charges people.delete_user people.remove".split(" ");
+for(h=0;h<l.length;h++)c(e,l[h]);var f="set set_once union unset remove delete".split(" ");e.get_group=function(){function a(c){b[c]=function(){call2_args=arguments;call2=[c].concat(Array.prototype.slice.call(call2_args,0));e.push([d,call2])}}for(var b={},d=["get_group"].concat(Array.prototype.slice.call(arguments,0)),c=0;c<f.length;c++)a(f[c]);return b};a._i.push([b,d,g])};a.__SV=1.2;b=c.createElement("script");b.type="text/javascript";b.async=!0;b.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?
+MIXPANEL_CUSTOM_LIB_URL:"file:"===c.location.protocol&&"//cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//)?"https://cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js":"//cdn4.mxpnl.com/libs/mixpanel-2-latest.min.js";d=c.getElementsByTagName("script")[0];d.parentNode.insertBefore(b,d)}})(document,window.mixpanel||[]);
+mixpanel.init("652c6ab04d3d810b2c40261c54e3106e", {batch_requests: true})</script>
+
+  
+    <script>mixpanel.track('Browse ' + window.location.pathname, {nonInteraction: true, branch: 'landing-20200531'})</script>
+  
+  
+<script>
+  mixpanel.track_links('.js-track-docs', 'Navigate to documentation');
+</script>
+
+</body>
+</html>
